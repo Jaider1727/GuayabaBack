@@ -1,7 +1,7 @@
 package com.gonartech.guayaba_system.dto;
 
+import com.gonartech.guayaba_system.model.Estado;
 import com.gonartech.guayaba_system.model.Rol;
-import com.gonartech.guayaba_system.model.userState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +16,6 @@ public class UserDto {
     private String username;
     private String email;
     private Rol rol;
-    private userState estado;
+    private Estado estado;
 
 }

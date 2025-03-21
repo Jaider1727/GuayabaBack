@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "usuarios")
@@ -18,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "El nombre de usuario no puede estar vacío")
     @Size(max = 100, message = "El nombre de usuario no puede superar los 100 caracteres")
@@ -35,15 +34,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Rol rol = Rol.TRABAJADOR;
+    @ManyToOne()
+    @JoinColumn(name = "rol_id", nullable = false)
+    private Rol rol;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private userState estado = userState.ACTIVO;
-
-    public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
-    }
+    @ManyToOne()
+    @JoinColumn(name = "estado_id", nullable = false)
+    private Estado estado;
 }
