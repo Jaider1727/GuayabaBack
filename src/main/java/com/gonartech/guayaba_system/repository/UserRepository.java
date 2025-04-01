@@ -10,13 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, String> {
 
     // Lista de usuarios
     List<User> findAll();
 
     // Buscar usuario por email
     Optional<User> findByEmail(String email);
+
+    // Buscar usuario por username
+    Optional<User> findByUsername(String username);
+    boolean existsByUsername(String username);
 
     // Buscar usuarios por estado
     List<User> findByEstado(Estado estado);

@@ -35,7 +35,7 @@ public class UserController {
 
     //  Obtener usuario por ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
@@ -59,20 +59,20 @@ public class UserController {
 
     //  Actualizar datos de usuario
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody @Valid User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody @Valid User updatedUser) {
         return ResponseEntity.ok(userService.updateUser(id, updatedUser));
     }
 
     //  Cambiar contraseña
     @PutMapping("/{id}/change-password")
-    public ResponseEntity<String> changePassword(@PathVariable Integer id, @RequestParam String newPassword) {
+    public ResponseEntity<String> changePassword(@PathVariable String id, @RequestParam String newPassword) {
         userService.changePassword(id, newPassword);
         return ResponseEntity.ok("Contraseña actualizada correctamente");
     }
 
     //  Eliminar usuario
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }

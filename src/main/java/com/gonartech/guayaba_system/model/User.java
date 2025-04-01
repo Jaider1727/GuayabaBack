@@ -24,9 +24,8 @@ public class User {
     @Column(nullable = false, length = 100)
     private String username;
 
-    @NotBlank(message = "El email no puede estar vacío")
     @Email(message = "Debe ingresar un email válido")
-    @Column(nullable = false,unique = true,length = 100)
+    @Column(unique = true,length = 100)
     private String email;
 
     @NotBlank(message = "La contraseña no puede estar vacía")
@@ -41,4 +40,11 @@ public class User {
     @ManyToOne()
     @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
+
+    public User(String username, String password, Rol rol) {
+        this.username = username;
+        this.password = password;
+        this.rol = rol;
+
+    }
 }
